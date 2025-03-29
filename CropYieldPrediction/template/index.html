@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        background-image: url("{{ url_for('static', filename='R.jpeg') }}");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        position: relative;
+        height: 100vh;
+    }
+
+    .container {
+        padding: 5px;
+        border-radius: 8px;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        z-index: 10;
+        display:flex;
+        align_items: center;
+        justify-content: center;
+        margin_left: 200px;
+    }
+    h2 {
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 5px;
+        display: flex;
+        color: yellow;
+        border:2px solid;
+        border-color: black;
+        background: black;
+        background-colour: black;
+    }
+
+    input {
+        width: 25%;
+        padding: 8px;
+        margin: 2px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        display: flex;
+        border:2px solid;
+        border-color: black;
+    }
+
+    button {
+        margin-top: 5px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        width: 15%;
+        border-radius: 4px;
+        text-align: center;
+        align-items: center;
+        border:2px solid;
+        border-color: black;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    h1{
+        color:white;
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        align-items: center;
+        background: black;
+    }
+</style>
+<body>
+    <form action="{{url_for('predict')}}" method="post">
+        <label>Soil pH:</label>
+        <input type="text" name="soil_pH" required><br><br>
+        <label>Nitrogen:</label>
+        <input type="text" name="nitrogen" required><br><br>
+        <label>Phosphorus:</label>
+        <input type="text" name="phosphorus" required><br><br>
+        <label>Potassium:</label>
+        <input type="text" name="potassium" required><br><br>
+        <label>Moisture:</label>
+        <input type="text" name="moisture" required><br><br>
+        <label>Temperature:</label>
+        <input type="text" name="temperature" required><br><br>
+        <label>Historical Yield:</label>
+        <input type="text" name="historical yield" required><br><br>
+        <button type="submit">Predict</button>
+    </form>
+    <h1 id="pred">
+        {{ Prediction_Text }}
+    </h1>
+</body>
+</html>
